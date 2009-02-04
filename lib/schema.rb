@@ -3,7 +3,7 @@ require 'mapbot'
 
 module Mapbot
   def self.create_db
-    DB.create_table :tweets do
+    @db.create_table :tweets do
       primary_key :id
     end
   end

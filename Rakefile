@@ -7,6 +7,7 @@ namespace :mapbot do
   
   desc "Creates the DB, duh."
   task :create_db => :init do
+    require File.join(File.dirname(__FILE__), 'config.rb')
     Mapbot.create_db
   end
 end
