@@ -2,6 +2,7 @@ Mapbot.init do
   Mapbot.db_path = 'db/mapbot.sqlite3'
   Mapbot.twitter_username = 'mapbot'
   Mapbot.twitter_password = 'lem0n!ce'
+  Mapbot.yelp_api_key = 'DX0Kb0pB62uyQSuK74nFEA'
 end
 
 include Geokit::Geocoders

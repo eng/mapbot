@@ -7,7 +7,7 @@ require 'open-uri'
 
 module Mapbot
   class << self
-    attr_accessor :db_path, :twitter_username, :twitter_password
+    attr_accessor :db_path, :twitter_username, :twitter_password, :yelp_api_key
     
     def init
       yield if block_given?
@@ -22,7 +22,9 @@ module Mapbot
     def post_new_tweet(tweet)
       return unless new_tweet?(tweet)
       tweet.text.gsub! /\@mapbot /, ''
-      geocoded_address = MultiGeocoder.geocode(tweet.text).full_address
+      geodata = MultiGeocoder.geocode(tweet.text)
+      geocoded_address = geodata.full_address
+      puts geodata.inspect
       google_maps_url = "http://maps.google.com/maps?q=#{CGI.escape(geocoded_address)}"
       tiny_url = open("http://tinyurl.com/api-create.php?url=#{google_maps_url}").read
       text = "@#{tweet.user.screen_name} #{tiny_url}"
